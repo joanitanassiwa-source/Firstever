@@ -1,0 +1,13 @@
+.footer { background: var(--au-corporate-green); color: var(--dark-muted); padding: clamp(56px, 7vw, 88px) 0 32px; }
+.footer__grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+@media (min-width: 760px) { .footer__grid { grid-template-columns: 1.6fr repeat(3, 1fr); gap: 32px; } }
+.footer__title { font-family: var(--font-display); font-weight: 900; color: var(--off-white); font-size: 15px; margin: 18px 0 10px; }
+.footer__meta { font-size: 13px; line-height: 1.65; max-width: 38ch; margin: 0; }
+.footer__col-title { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--au-gold-text); margin-bottom: 16px; font-family: var(--font-body); font-weight: bold; }
+.footer__list { list-style: none; margin: 0; padding: 0; }
+.footer__list li { margin-bottom: 10px; }
+.footer__link { font-size: 13px; text-decoration: none; color: var(--dark-muted); transition: color .16s ease; }
+.footer__link:hover { color: var(--au-gold-text); }
+.footer__rule { margin: 44px 0 22px; }
+.footer__bottom { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: space-between; font-size: 12px; }
+.footer__hash { color: var(--au-gold-text); font-weight: bold; letter-spacing: .04em; }

@@ -1,0 +1,47 @@
+/* Shared chrome for the delegate and admin dashboards. Same tokens as the
+   public site so the tools feel like part of one product. */
+.dash { min-height: 100vh; background: var(--off-white); }
+.dash__bar { background: var(--au-corporate-green); border-bottom: 1px solid var(--line-dark); }
+.dash__bar-inner {
+  max-width: var(--container); margin: 0 auto; padding: 14px var(--gutter);
+  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+}
+.dash__title { font-family: var(--font-display); font-weight: 900; font-size: 13px; color: var(--off-white); text-transform: uppercase; letter-spacing: -0.01em; line-height: 1.2; }
+.dash__bar-actions { margin-left: auto; display: flex; align-items: center; gap: 18px; }
+.dash__bar-link { font-size: 13px; color: var(--dark-muted); text-decoration: none; }
+.dash__bar-link:hover { color: var(--au-gold-text); }
+.dash__signout {
+  background: transparent; border: 1px solid var(--line-dark); color: var(--off-white);
+  font-size: 12.5px; padding: 8px 16px; cursor: pointer; transition: border-color .16s ease, color .16s ease;
+}
+.dash__signout:hover { border-color: var(--au-gold); color: var(--au-gold-text); }
+
+.dash__main { max-width: var(--container); margin: 0 auto; padding: clamp(32px, 5vw, 56px) var(--gutter) 80px; }
+.dash__head { margin-bottom: 40px; }
+.dash__eyebrow { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; font-weight: bold; color: var(--au-green); margin: 0 0 14px; }
+.dash__h1 { font-size: clamp(1.8rem, 4vw, 2.7rem); color: var(--au-corporate-green); margin-bottom: 12px; }
+.dash__lede { color: var(--grey-text); max-width: 60ch; margin: 0; }
+
+.panel { background: var(--white); border: 1px solid var(--line-light); padding: clamp(22px, 3vw, 32px); }
+.panel + .panel { margin-top: 24px; }
+.panel__title { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--au-green); font-family: var(--font-body); font-weight: bold; margin-bottom: 22px; }
+
+.dash__cols { display: grid; grid-template-columns: 1fr; gap: 24px; }
+@media (min-width: 940px) { .dash__cols { grid-template-columns: .8fr 1.2fr; gap: 28px; } }
+
+.deets { display: grid; gap: 0; }
+.deets__row { display: flex; justify-content: space-between; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--line-light); font-size: 14px; }
+.deets__row:last-child { border-bottom: 0; }
+.deets__key { color: var(--grey-text); }
+.deets__val { color: var(--au-corporate-green); font-weight: bold; text-align: right; }
+
+.myday { margin-bottom: 26px; }
+.myday__label { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-weight: bold; color: var(--au-gold); margin: 0 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--au-gold); }
+.myday__date { color: var(--grey-text); letter-spacing: 0; text-transform: none; font-weight: normal; margin-left: 8px; }
+.myitem { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line-light); align-items: baseline; }
+.myitem:last-child { border-bottom: 0; }
+.myitem__time { font-size: 12.5px; color: var(--grey-text); font-variant-numeric: tabular-nums; flex: 0 0 92px; }
+.myitem__title { font-size: 14.5px; color: var(--au-corporate-green); font-weight: bold; line-height: 1.4; }
+.myitem__type { font-size: 11px; color: var(--grey-text); margin-top: 3px; }
+
+.dash__empty { border: 1px dashed var(--line-light); padding: 34px; text-align: center; color: var(--grey-text); font-size: 14px; }

@@ -1,0 +1,60 @@
+.speakers { position: relative; }
+.speakers__rail-wrap { position: relative; }
+.speakers__rail {
+  display: flex; gap: 30px; overflow-x: auto; padding: 8px 2px 22px;
+  scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none;
+}
+.speakers__rail::-webkit-scrollbar { display: none; }
+.speakers__item { flex: 0 0 auto; scroll-snap-align: start; text-align: center; width: 132px; }
+
+.speakers__photo {
+  width: 118px; height: 118px; border-radius: 50%;
+  background: var(--speaker-color); border: 2px solid transparent;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; padding: 0; position: relative;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+.speakers__photo:hover, .speakers__photo:focus-visible {
+  transform: scale(1.06);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--speaker-color) 30%, transparent);
+}
+.speakers__photo.is-active {
+  border-color: var(--au-gold);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--au-gold) 42%, transparent);
+  transform: scale(1.04);
+}
+.speakers__initials {
+  font-family: var(--font-display); font-weight: 900; font-size: 30px;
+  color: #FFFFFF; letter-spacing: 0.01em;
+  /* Initials sit on nine different brand colours; a soft dark shadow keeps
+     them legible on the lighter gold without changing the brand fill. */
+  text-shadow: 0 1px 3px rgba(15, 51, 32, .55);
+}
+.speakers__name {
+  display: block; margin-top: 14px; font-size: 13px; font-weight: bold;
+  color: var(--off-white); line-height: 1.35;
+}
+
+.speakers__controls { display: flex; gap: 10px; margin-bottom: 34px; }
+.speakers__arrow {
+  width: 42px; height: 42px; background: transparent; color: var(--off-white);
+  border: 1px solid var(--line-dark); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .16s ease, color .16s ease;
+}
+.speakers__arrow:hover { border-color: var(--au-gold); color: var(--au-gold-text); }
+
+.speakers__bio { border-top: 1px solid var(--line-dark); padding-top: 30px; transition: background-color .5s ease; }
+.speakers__bio.is-flash { background-color: rgba(180, 162, 105, .10); }
+.speakers__placeholder { color: var(--dark-muted); font-size: 14px; margin: 0; }
+.speakers__bio-inner { display: flex; gap: 26px; align-items: flex-start; flex-wrap: wrap; }
+.speakers__bio-avatar {
+  width: 74px; height: 74px; border-radius: 50%; flex: 0 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 900; font-size: 21px; color: #fff;
+  text-shadow: 0 1px 3px rgba(15, 51, 32, .55);
+}
+.speakers__bio-text { flex: 1 1 320px; }
+.speakers__bio-name { font-size: clamp(1.3rem, 2.4vw, 1.75rem); margin-bottom: 6px; }
+.speakers__bio-title { color: var(--au-gold-text); font-size: 13px; margin: 0 0 14px; font-weight: bold; }
+.speakers__bio-body { color: var(--dark-muted); max-width: 62ch; margin: 0; line-height: 1.75; }

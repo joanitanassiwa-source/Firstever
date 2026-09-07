@@ -1,0 +1,216 @@
+/* =========================================================================
+   Africa Volunteering Conference 2026 — design system
+   African Union brand colours, Arial-only typography (Univers is print-only
+   and licensed, so the AU digital guide mandates Arial for all web text).
+   Editorial layout language: 1px borders, no radii, no shadows, gold rules.
+   ========================================================================= */
+
+:root {
+  /* --- Official AU brand palette --- */
+  --au-corporate-green: #1A5632;
+  --au-green: #348F41;
+  --au-gold: #B4A269;
+  --au-red: #9F2241;
+  --white: #FFFFFF;
+  --grey-text: #58595B;
+  --off-white: #F5F6F4;
+
+  /* --- Derived tints, used only where contrast requires it --- */
+  /* Brand gold on corporate green is 3.4:1 — fine for large text, borders and
+     decoration, short of AA for body copy. This lighter tint hits 4.6:1 and is
+     used for small text on dark grounds only. */
+  --au-gold-text: #CDBE8C;
+  /* Darker green for text on gold fills (6.1:1). */
+  --au-green-deep: #0F3320;
+  --au-red-light: #D98BA0;
+
+  --line-dark: rgba(180, 162, 105, 0.28);   /* gold-tinted rule on dark */
+  --line-light: #DFE1DC;                     /* neutral rule on light */
+  --dark-muted: rgba(245, 246, 244, 0.72);
+
+  --font-body: Arial, Helvetica, sans-serif;
+  --font-display: "Arial Black", Arial, Helvetica, sans-serif;
+
+  --container: 1220px;
+  --gutter: clamp(20px, 5vw, 64px);
+  --section-y: clamp(72px, 9vw, 132px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--grey-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+p { margin: 0 0 1.15em; }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; }
+
+/* Gold focus ring everywhere, including on dark grounds. */
+:focus-visible {
+  outline: 2px solid var(--au-gold);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 200;
+  background: var(--au-gold); color: var(--au-green-deep);
+  padding: 12px 20px; font-weight: bold; font-size: 14px;
+}
+.skip-link:focus { left: 0; }
+
+/* ---------- layout primitives ---------- */
+
+.container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+
+.section { padding: var(--section-y) 0; position: relative; overflow: hidden; }
+.section--dark { background: var(--au-corporate-green); color: var(--off-white); }
+.section--light { background: var(--white); color: var(--grey-text); }
+.section--offwhite { background: var(--off-white); color: var(--grey-text); }
+
+.section--dark h1, .section--dark h2, .section--dark h3, .section--dark h4 { color: var(--off-white); }
+.section--light h1, .section--light h2, .section--light h3, .section--light h4,
+.section--offwhite h1, .section--offwhite h2, .section--offwhite h3, .section--offwhite h4 {
+  color: var(--au-corporate-green);
+}
+
+/* ---------- type ---------- */
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 0 0 20px;
+  color: var(--au-green);
+}
+.section--dark .eyebrow { color: var(--au-gold-text); }
+
+.h-section { font-size: clamp(1.9rem, 4vw, 3.1rem); max-width: 20ch; }
+.h-hero {
+  font-size: clamp(2.4rem, 7.2vw, 5.1rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  max-width: 15ch;
+}
+.lede { font-size: clamp(1rem, 1.5vw, 1.15rem); line-height: 1.7; max-width: 62ch; }
+.section--dark .lede { color: var(--dark-muted); }
+.sub { max-width: 58ch; font-size: 1rem; line-height: 1.7; }
+.section--dark .sub { color: var(--dark-muted); }
+
+.italic-quote { font-style: italic; font-weight: normal; }
+
+/* ---------- gold rule: the recurring divider ---------- */
+
+.rule-gold { height: 1px; background: var(--au-gold); border: 0; margin: 0; opacity: 0.85; }
+.rule-gold--short { width: 64px; }
+.rule-hair { height: 1px; background: var(--line-dark); border: 0; }
+.section--light .rule-hair, .section--offwhite .rule-hair { background: var(--line-light); }
+
+/* ---------- kgotla ring bullet (never a plain dot) ---------- */
+
+.ring-list { list-style: none; margin: 0; padding: 0; }
+.ring-list li { position: relative; padding-left: 26px; margin-bottom: 14px; }
+.ring-list li::before {
+  content: "";
+  position: absolute; left: 0; top: 0.5em;
+  width: 10px; height: 10px;
+  border: 1.5px solid var(--au-gold);
+  border-radius: 50%;
+}
+
+.dot-ring {
+  display: inline-block; width: 9px; height: 9px;
+  border: 1.5px solid var(--au-gold); border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+/* ---------- buttons ---------- */
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 15px 30px;
+  font-size: 14px; font-weight: bold; letter-spacing: 0.02em;
+  text-decoration: none; border: 1px solid transparent; cursor: pointer;
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease;
+}
+.btn--gold { background: var(--au-gold); color: var(--au-green-deep); border-color: var(--au-gold); }
+.btn--gold:hover { background: #C6B57F; border-color: #C6B57F; }
+.btn--outline { background: transparent; color: var(--off-white); border-color: var(--line-dark); }
+.btn--outline:hover { border-color: var(--au-gold); color: var(--au-gold-text); }
+.btn--outline-dark { background: transparent; color: var(--au-corporate-green); border-color: var(--au-corporate-green); }
+.btn--outline-dark:hover { background: var(--au-corporate-green); color: var(--off-white); }
+.btn--sm { padding: 10px 18px; font-size: 13px; }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: .45; cursor: not-allowed; }
+
+/* ---------- ambient glow (hero, speakers, closing band only) ---------- */
+
+.glow {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  filter: blur(70px); opacity: .5; z-index: 0;
+}
+.glow--gold { background: rgba(180, 162, 105, .55); }
+.glow--green { background: rgba(52, 143, 65, .5); }
+.glow--red { background: rgba(159, 34, 65, .42); }
+
+.section > .container { position: relative; z-index: 1; }
+
+/* ---------- shared border grid (no floating cards, no gaps) ---------- */
+
+.grid-shared {
+  display: grid;
+  border-top: 1px solid var(--line-light);
+  border-left: 1px solid var(--line-light);
+}
+.grid-shared > * {
+  border-right: 1px solid var(--line-light);
+  border-bottom: 1px solid var(--line-light);
+  padding: clamp(24px, 3vw, 38px);
+}
+.section--dark .grid-shared { border-top-color: var(--line-dark); border-left-color: var(--line-dark); }
+.section--dark .grid-shared > * { border-right-color: var(--line-dark); border-bottom-color: var(--line-dark); }
+
+.cols-2 { grid-template-columns: 1fr; }
+.cols-3 { grid-template-columns: 1fr; }
+@media (min-width: 700px) { .cols-2, .cols-3 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .cols-3 { grid-template-columns: repeat(3, 1fr); } }
+
+/* ---------- section header block ---------- */
+
+.section-head { max-width: 760px; margin-bottom: clamp(40px, 5vw, 68px); }
+.section-head .sub { margin-top: 18px; }
+
+/* ---------- utility ---------- */
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.stack-sm > * + * { margin-top: 10px; }
+.flex-wrap { display: flex; flex-wrap: wrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}

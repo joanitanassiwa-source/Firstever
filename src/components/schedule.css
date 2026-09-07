@@ -1,0 +1,83 @@
+.schedule__filters { display: flex; flex-direction: column; gap: 22px; margin-bottom: 30px; }
+@media (min-width: 900px) { .schedule__filters { flex-direction: row; gap: 48px; } }
+.schedule__filter-group { border: 0; padding: 0; margin: 0; }
+.schedule__filter-legend { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--au-gold-text); font-weight: bold; padding: 0; margin-bottom: 12px; }
+.schedule__chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.chip {
+  background: transparent; color: var(--dark-muted);
+  border: 1px solid var(--line-dark); padding: 8px 15px;
+  font-size: 12.5px; cursor: pointer; letter-spacing: .01em;
+  transition: all .16s ease;
+}
+.chip:hover { border-color: var(--au-gold); color: var(--au-gold-text); }
+.chip.is-on { background: var(--au-gold); border-color: var(--au-gold); color: var(--au-green-deep); font-weight: bold; }
+
+.schedule__count { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--au-gold-text); margin: 0 0 22px; font-weight: bold; }
+.schedule__empty { color: var(--dark-muted); border: 1px solid var(--line-dark); padding: 40px; text-align: center; margin: 0; }
+.schedule__error { color: var(--au-red-light); border-left: 2px solid var(--au-red); padding-left: 14px; font-size: 14px; margin: 0 0 18px; }
+
+.schedule__grid {
+  display: grid; grid-template-columns: 1fr;
+  border-top: 1px solid var(--line-dark); border-left: 1px solid var(--line-dark);
+}
+@media (min-width: 720px) { .schedule__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .schedule__grid { grid-template-columns: repeat(3, 1fr); } }
+.schedule__grid--compact { border-color: var(--line-light); }
+
+.scard {
+  border-right: 1px solid var(--line-dark); border-bottom: 1px solid var(--line-dark);
+  padding: 26px 24px 24px; display: flex; flex-direction: column;
+}
+.schedule__grid--compact .scard { border-color: var(--line-light); }
+.scard__meta { display: flex; gap: 12px; align-items: baseline; margin-bottom: 14px; }
+.scard__day { font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; font-weight: bold; color: var(--au-gold-text); }
+.scard__time { font-size: 12.5px; color: var(--dark-muted); font-variant-numeric: tabular-nums; }
+.scard__title { font-size: 1.02rem; line-height: 1.28; margin-bottom: 10px; }
+.scard__desc { font-size: 13.5px; line-height: 1.65; color: var(--dark-muted); margin: 0 0 18px; flex: 1; }
+.scard__foot { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+
+.tag { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; font-weight: bold; padding: 5px 10px; border: 1px solid; }
+.tag--plenary { color: #CDBE8C; border-color: rgba(180,162,105,.6); }
+.tag--breakout { color: #7FC98C; border-color: rgba(52,143,65,.65); }
+.tag--workshop { color: #E4D9B4; border-color: rgba(180,162,105,.4); }
+.tag--marketplace { color: #A9D8B2; border-color: rgba(52,143,65,.45); }
+.tag--networking { color: #CDBE8C; border-color: rgba(180,162,105,.35); }
+.tag--ceremony { color: #D98BA0; border-color: rgba(159,34,65,.6); }
+
+.scard__cap { font-size: 11.5px; color: var(--au-gold-text); font-weight: bold; }
+.scard__cap.is-full { color: var(--au-red-light); }
+
+.scard__rsvp {
+  margin-top: 18px; width: 100%; padding: 11px 14px;
+  background: transparent; color: var(--off-white);
+  border: 1px solid var(--line-dark); font-size: 12.5px; font-weight: bold;
+  cursor: pointer; transition: all .16s ease;
+}
+.scard__rsvp:hover:not(:disabled) { border-color: var(--au-gold); color: var(--au-gold-text); }
+.scard__rsvp.is-on { background: var(--au-gold); border-color: var(--au-gold); color: var(--au-green-deep); }
+.scard__rsvp:disabled { opacity: .4; cursor: not-allowed; }
+
+/* Compact variant sits on a light ground inside the delegate dashboard. */
+.schedule__grid--compact .scard__title { color: var(--au-corporate-green); }
+.schedule__grid--compact .scard__desc { color: var(--grey-text); }
+.schedule__grid--compact .scard__time { color: var(--grey-text); }
+.schedule__grid--compact .scard__day { color: var(--au-green); }
+.schedule__grid--compact .scard__rsvp { color: var(--au-corporate-green); border-color: var(--line-light); }
+.schedule__grid--compact .tag--plenary, .schedule__grid--compact .tag--networking { color: #7A6A3A; border-color: rgba(180,162,105,.8); }
+.schedule__grid--compact .tag--breakout, .schedule__grid--compact .tag--marketplace { color: #24692F; border-color: rgba(52,143,65,.8); }
+.schedule__grid--compact .tag--workshop { color: #7A6A3A; border-color: rgba(180,162,105,.6); }
+.schedule__grid--compact .tag--ceremony { color: #9F2241; border-color: rgba(159,34,65,.7); }
+.schedule__grid--compact .scard__cap { color: #7A6A3A; }
+.schedule__grid--compact .scard__cap.is-full { color: var(--au-red); }
+
+/* ---------- compact variant on a light ground (delegate dashboard) ----------
+   The dark-section defaults would put off-white text on a white panel, so the
+   whole filter row is restated here. */
+.schedule--compact .schedule__filter-legend { color: var(--au-green); }
+.schedule--compact .chip { color: var(--grey-text); border-color: var(--line-light); }
+.schedule--compact .chip:hover { border-color: var(--au-green); color: var(--au-corporate-green); }
+.schedule--compact .chip.is-on { background: var(--au-gold); border-color: var(--au-gold); color: var(--au-green-deep); }
+.schedule--compact .schedule__count { color: var(--au-green); }
+.schedule--compact .schedule__empty { color: var(--grey-text); border-color: var(--line-light); }
+.schedule--compact .schedule__error { color: var(--au-red); }

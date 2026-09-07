@@ -1,0 +1,148 @@
+// Africa Volunteering Conference 2026 — data model
+// Auth.js (NextAuth) owns User / Account / Session / VerificationToken.
+// The conference programme table is deliberately named ConferenceSession so it
+// does not collide with Auth.js's `Session` (browser session) table.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  delegate
+  admin
+}
+
+enum RegistrationCategory {
+  DELEGATE
+  CORPORATE_INTERNATIONAL
+  NATIONAL_ORGANIZATION
+  LOCAL_ORGANIZATION
+  COMMUNITY_BASED_ORGANIZATION
+  YOUTH
+}
+
+enum SessionType {
+  PLENARY
+  BREAKOUT
+  WORKSHOP
+  MARKETPLACE
+  NETWORKING
+  CEREMONY
+}
+
+model User {
+  id                   String                @id @default(cuid())
+  email                String                @unique
+  name                 String?
+  organization         String?
+  registrationCategory RegistrationCategory  @default(DELEGATE)
+  role                 Role                  @default(delegate)
+  emailVerified        DateTime?
+  image                String?
+  createdAt            DateTime              @default(now())
+
+  accounts Account[]
+  sessions Session[]
+  rsvps    SessionRSVP[]
+
+  @@index([role])
+}
+
+model ConferenceSession {
+  id          String      @id @default(cuid())
+  day         Int
+  time        String
+  title       String
+  description String
+  type        SessionType
+  capacity    Int?
+  order       Int         @default(0)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  rsvps SessionRSVP[]
+
+  @@index([day, order])
+}
+
+model SessionRSVP {
+  id        String   @id @default(cuid())
+  userId    String
+  sessionId String
+  createdAt DateTime @default(now())
+
+  user    User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  session ConferenceSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  // A delegate can only hold one seat per session.
+  @@unique([userId, sessionId])
+  @@index([sessionId])
+}
+
+model Speaker {
+  id          String   @id @default(cuid())
+  name        String
+  title       String
+  bio         String
+  avatarColor String
+  initials    String
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([order])
+}
+
+// Editable copy blocks. Only content that plausibly changes before or during
+// the event lives here; nav labels and footer boilerplate stay in code.
+model SiteContent {
+  key       String   @id
+  value     String
+  label     String
+  group     String   @default("General")
+  multiline Boolean  @default(true)
+  order     Int      @default(0)
+  updatedAt DateTime @updatedAt
+
+  @@index([group, order])
+}
+
+// ---- Auth.js standard tables ----
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}

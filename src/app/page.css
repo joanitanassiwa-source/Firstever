@@ -1,0 +1,99 @@
+/* ---------- 1. Hero ---------- */
+.hero { padding-top: clamp(56px, 7vw, 96px); padding-bottom: clamp(64px, 8vw, 110px); }
+.hero__inner { display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center; }
+@media (min-width: 1000px) { .hero__inner { grid-template-columns: 1.15fr .85fr; gap: 60px; } }
+.hero__sub { margin-top: 26px; max-width: 56ch; }
+.hero__pillars { list-style: none; margin: 30px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 12px 30px; }
+.hero__pillars li { display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: bold; color: var(--off-white); }
+.hero__rule { margin: 34px 0 26px; max-width: 640px; }
+.hero__meta { display: flex; flex-wrap: wrap; gap: 26px 44px; margin: 0; }
+.hero__meta dt { font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--au-gold-text); font-weight: bold; margin-bottom: 6px; }
+.hero__meta dd { margin: 0; font-size: 15px; color: var(--off-white); font-weight: bold; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+.hero__art { display: none; }
+@media (min-width: 1000px) { .hero__art { display: block; } }
+.hero__circle { width: 100%; max-width: 500px; margin-left: auto; }
+
+/* ---------- 2. About ---------- */
+.about { display: grid; grid-template-columns: 1fr; gap: 48px; }
+@media (min-width: 960px) { .about { grid-template-columns: 1.35fr .65fr; gap: 72px; } }
+.about__copy { margin-top: 26px; font-size: 1.02rem; line-height: 1.78; max-width: 62ch; }
+.about__stats { border-top: 1px solid var(--line-light); padding-top: 26px; }
+.stat { padding: 20px 0; }
+.stat__value { display: block; font-family: var(--font-display); font-weight: 900; font-size: clamp(2.6rem, 5vw, 3.6rem); color: var(--au-corporate-green); line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.stat__label { display: block; margin-top: 10px; font-size: 13px; line-height: 1.55; color: var(--grey-text); max-width: 30ch; }
+.about__crowd { width: 100%; max-width: 900px; margin-top: 56px; opacity: .92; }
+
+/* ---------- 3. Why 2026 ---------- */
+.why__item { display: flex; flex-direction: column; }
+.why__num { font-family: var(--font-display); font-weight: 900; font-size: 13px; color: var(--au-gold); letter-spacing: .06em; margin-bottom: 18px; }
+.why__title { font-size: 1.12rem; line-height: 1.3; margin-bottom: 12px; }
+.why__body { font-size: 14px; line-height: 1.7; color: var(--dark-muted); margin: 0; }
+
+/* ---------- 5. Objectives ---------- */
+.objectives { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-light); }
+.objective { display: grid; grid-template-columns: 1fr; gap: 10px; padding: 30px 0; border-bottom: 1px solid var(--line-light); }
+@media (min-width: 800px) { .objective { grid-template-columns: 120px 1fr; gap: 32px; } }
+.objective__num { font-family: var(--font-display); font-weight: 900; font-size: 2.1rem; color: var(--au-gold); line-height: 1; letter-spacing: -0.02em; }
+.objective__title { font-size: 1.2rem; margin-bottom: 10px; }
+.objective__body { margin: 0; max-width: 68ch; line-height: 1.75; }
+
+/* ---------- 6. Volunteers in Action ---------- */
+.action__grid { grid-template-columns: 1fr; }
+@media (min-width: 620px) { .action__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .action__grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1200px) { .action__grid { grid-template-columns: repeat(5, 1fr); } }
+.action__item { display: flex; flex-direction: column; }
+.action__art { width: 100%; max-width: 150px; margin-bottom: 20px; }
+.action__title { font-size: 1rem; margin-bottom: 8px; }
+.action__body { font-size: 13.5px; line-height: 1.6; margin: 0; }
+
+/* ---------- 8. Who Attends ---------- */
+.attend .dot-ring { margin-bottom: 18px; }
+.attend__title { font-size: 1.05rem; margin-bottom: 10px; line-height: 1.3; }
+.attend__body { font-size: 13.5px; line-height: 1.65; margin: 0; }
+
+/* ---------- 9. Declaration ---------- */
+.declaration__inner { display: grid; grid-template-columns: 1fr; gap: 48px; }
+@media (min-width: 940px) { .declaration__inner { grid-template-columns: 1.25fr .75fr; gap: 72px; } }
+.declaration__eyebrow { color: var(--au-red-light); }
+.declaration__body { margin-top: 24px; }
+.declaration__quote { margin: 34px 0 0; padding: 6px 0 6px 26px; border-left: 3px solid var(--au-red); }
+.declaration__quote p { margin: 0; font-size: clamp(1.05rem, 2vw, 1.3rem); line-height: 1.6; color: var(--off-white); }
+.declaration__sub { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--au-gold-text); font-family: var(--font-body); font-weight: bold; margin-bottom: 22px; }
+.declaration__list li { color: var(--off-white); font-size: 15px; padding-bottom: 14px; border-bottom: 1px solid var(--line-dark); margin-bottom: 14px; }
+.declaration__list li:last-child { border-bottom: 0; }
+
+/* ---------- 10. Venue ---------- */
+.venue { display: grid; grid-template-columns: 1fr; gap: 48px; }
+@media (min-width: 960px) { .venue { grid-template-columns: 1.3fr .7fr; gap: 64px; } }
+.venue__main p { max-width: 60ch; line-height: 1.78; }
+.venue__main .h-section { margin-bottom: 24px; }
+.venue__figure { margin: 40px 0 0; }
+.venue__skyline { width: 100%; }
+.venue__caption { font-size: 12.5px; color: var(--grey-text); margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line-light); }
+.venue__panel { border: 1px solid var(--line-light); padding: clamp(24px, 3vw, 34px); align-self: start; }
+.venue__panel-title { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--au-green); font-family: var(--font-body); font-weight: bold; margin-bottom: 22px; }
+.venue__list li { font-size: 14px; line-height: 1.6; }
+
+/* ---------- 11. Partners ---------- */
+.partners { display: grid; grid-template-columns: 1fr; gap: 34px; align-items: start; }
+@media (min-width: 900px) { .partners { grid-template-columns: minmax(280px, .8fr) 1.2fr; gap: 56px; } }
+.partners__badge { background: var(--white); border: 1px solid var(--line-light); padding: 26px; display: flex; flex-direction: column; gap: 18px; }
+.partners__badge-name { font-family: var(--font-display); font-weight: 900; font-size: 1.1rem; color: var(--au-corporate-green); margin: 0 0 6px; }
+.partners__badge-role { font-size: 13px; line-height: 1.6; margin: 0; }
+.partners__chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.partners__chip { border: 1px solid var(--line-light); background: var(--white); padding: 10px 16px; font-size: 13px; color: var(--grey-text); }
+.partners__note { margin: 36px 0 0; font-size: 12.5px; color: var(--grey-text); padding-top: 20px; border-top: 1px solid var(--line-light); }
+
+/* ---------- 12. Register ---------- */
+.register { display: grid; grid-template-columns: 1fr; gap: 44px; }
+@media (min-width: 1000px) { .register { grid-template-columns: .8fr 1.2fr; gap: 72px; } }
+.register__intro .sub { margin-top: 18px; }
+
+/* ---------- 13. Closing band ---------- */
+.closing { padding-top: clamp(72px, 9vw, 120px); padding-bottom: clamp(72px, 9vw, 120px); border-top: 1px solid var(--line-dark); }
+.closing__inner { text-align: center; max-width: 760px; margin: 0 auto; }
+.closing__kicker { font-family: var(--font-display); font-weight: 900; font-size: 13px; letter-spacing: .22em; color: var(--au-gold); margin: 0 0 24px; }
+.closing__heading { font-size: clamp(2.1rem, 5.4vw, 3.8rem); line-height: 1.02; margin-bottom: 24px; }
+.closing__body { color: var(--dark-muted); font-size: 1.02rem; line-height: 1.75; max-width: 56ch; margin: 0 auto 34px; }
