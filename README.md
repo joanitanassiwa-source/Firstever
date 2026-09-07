@@ -65,7 +65,9 @@ To send real email, set `EMAIL_SERVER` to an SMTP URL, e.g.
 - **SiteContent** — key/value copy blocks the admin can edit. Only content that plausibly
   changes before or during the event; nav and footer boilerplate stay in code.
 
-Seeding is idempotent and **preserves admin edits** to `SiteContent` on re-run.
+Seeding is **fully idempotent**: speakers upsert on `name`, sessions on `(day, title)`, and
+copy blocks on `key`. Re-running it preserves admin edits and, critically, never
+cascade-deletes the `SessionRSVP` rows that make up delegates' personal schedules.
 
 ## Live data
 

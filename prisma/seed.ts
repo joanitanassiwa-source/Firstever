@@ -25,7 +25,7 @@ const speakers = [
     name: "Farida Hassan",
     title: "Regional Director, UN Volunteers Africa",
     bio: "Farida oversees UNV's country programmes across East and Central Africa and co-authored the forthcoming State of Volunteerism in Africa Report. She's spoken at the last three UN General Assembly side events on volunteerism.",
-    avatarColor: "#1A5632",
+    avatarColor: "#B4A269",
     initials: "FH",
   },
   {
@@ -53,21 +53,21 @@ const speakers = [
     name: "Emeka Okafor",
     title: "Diaspora Engagement Lead, African Union Foundation",
     bio: "Emeka builds bridges between diaspora professionals and volunteer opportunities back home, having placed over 2,000 skilled volunteers in the last three years. He'll unpack what sustainable diaspora resource mobilization actually looks like.",
-    avatarColor: "#1A5632",
+    avatarColor: "#B4A269",
     initials: "EO",
   },
   {
     name: "Grace Lekoma",
     title: "Youth & Volunteerism Advocate, Host Committee Botswana",
     bio: "Grace coordinates Botswana's national volunteer corps and is part of the local host committee shaping the Conference's cultural programme. She's especially focused on making the event genuinely accessible to grassroots organizations.",
-    avatarColor: "#B4A269",
+    avatarColor: "#348F41",
     initials: "GL",
   },
   {
     name: "Samuel Owusu",
     title: "Programme Lead, Africa Climate Volunteers Coalition",
     bio: "Samuel coordinates reforestation and climate-resilience volunteer programmes spanning twelve countries. He'll be speaking on where green volunteering fits into Africa's broader climate finance conversation.",
-    avatarColor: "#348F41",
+    avatarColor: "#B4A269",
     initials: "SO",
   },
 ];
@@ -184,24 +184,32 @@ async function main() {
   console.log("Seeding Africa Volunteering Conference 2026…");
 
   // Speakers — clearly swappable placeholders until AUCVLP confirms the lineup.
-  await prisma.speaker.deleteMany();
+  // Upserted by name so re-seeding never drops rows the admin is working with.
   for (const [i, s] of speakers.entries()) {
-    await prisma.speaker.create({ data: { ...s, order: i } });
+    await prisma.speaker.upsert({
+      where: { name: s.name },
+      update: { ...s, order: i },
+      create: { ...s, order: i },
+    });
   }
   console.log(`  ${speakers.length} speakers`);
 
-  await prisma.conferenceSession.deleteMany();
+  // Upserted on (day, title): re-seeding must not cascade-delete the RSVPs
+  // that make up delegates' personal schedules.
   for (const [i, s] of sessions.entries()) {
-    await prisma.conferenceSession.create({
-      data: {
-        day: s.day,
-        time: s.time,
-        title: s.title,
-        description: s.description,
-        type: s.type,
-        capacity: s.capacity ?? null,
-        order: i,
-      },
+    const data = {
+      day: s.day,
+      time: s.time,
+      title: s.title,
+      description: s.description,
+      type: s.type,
+      capacity: s.capacity ?? null,
+      order: i,
+    };
+    await prisma.conferenceSession.upsert({
+      where: { day_title: { day: s.day, title: s.title } },
+      update: data,
+      create: data,
     });
   }
   console.log(`  ${sessions.length} conference sessions`);
