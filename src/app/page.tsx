@@ -301,7 +301,7 @@ export default async function HomePage() {
               {/* The full-colour AU emblem carries a white background, so it is
                   only ever placed on a white card like this one. */}
               <div className="partners__badge">
-                <AULogo variant="dark" />
+                <AULogo variant="dark" height={48} />
                 <div>
                   <p className="partners__badge-name">African Union</p>
                   <p className="partners__badge-role">Lead convener, through the Continental Volunteer Linkage Platform</p>

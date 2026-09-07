@@ -105,8 +105,9 @@ circle, the crowd strip, five volunteering vignettes and the Gaborone skyline.
 
 ## Before production
 
-- [ ] **Replace the placeholder logo.** `src/components/Logo.tsx` draws a neutral ring mark, not
-      the AU emblem. Swap in the official files from AU comms, served from `/public`.
+- [ ] **Add the official AU logo.** Drop it at `public/au-logo.png` and it is used everywhere
+      automatically — see `public/README.md`. Until then `src/components/Logo.tsx` renders a
+      neutral ring mark that deliberately does not reproduce the AU emblem.
 - [ ] **Replace the speaker lineup.** The nine seeded speakers are illustrative; edit them in
       `/admin/speakers` once names are confirmed.
 - [ ] Change the seeded admin email and add the real AUCVLP administrators.
